@@ -99,6 +99,10 @@
     "win32-binding": {
       "description": "Make available Win32 binding",
       "supports": "windows"
+    },
+    "dllexport": {
+      "description": "Exports global symbols",
+      "supports": "windows"
     }
   }
 }

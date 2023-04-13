@@ -55,6 +55,10 @@ if ("libigl-imgui" IN_LIST FEATURES)
     file(INSTALL "${IMGUI_FONTS_DROID_SANS_H}" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
 endif()
 
+if("dllexport" IN_LIST FEATURES)
+    vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllexport )")
+endif()
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -64,6 +68,10 @@ vcpkg_cmake_configure(
 )
 
 vcpkg_cmake_install()
+
+if("dllexport" IN_LIST FEATURES)
+    vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "#define IMGUI_API __declspec( dllexport )" "//#define IMGUI_API __declspec( dllexport )")
+endif()
 
 if ("freetype" IN_LIST FEATURES)
     vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "//#define IMGUI_ENABLE_FREETYPE" "#define IMGUI_ENABLE_FREETYPE")
