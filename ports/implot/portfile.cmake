@@ -12,6 +12,10 @@ vcpkg_from_github(
 
 file(COPY "${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt" DESTINATION "${SOURCE_PATH}")
 
+if("dllexport" IN_LIST FEATURES)
+    vcpkg_replace_string("${SOURCE_PATH}/implot.h" "#define IMPLOT_API" "#define IMPLOT_API __declspec( dllexport )")
+endif()
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS_DEBUG
@@ -19,6 +23,10 @@ vcpkg_cmake_configure(
 )
 
 vcpkg_cmake_install()
+
+if("dllexport" IN_LIST FEATURES)
+    vcpkg_replace_string("${SOURCE_PATH}/implot.h" "#define IMPLOT_API __declspec( dllexport )" "#define IMPLOT_API")
+endif()
 
 vcpkg_copy_pdbs()
 vcpkg_cmake_config_fixup()

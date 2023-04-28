@@ -15,5 +15,11 @@
       "name": "vcpkg-cmake-config",
       "host": true
     }
-  ]
+  ],
+  "features": {
+    "dllexport": {
+      "description": "Exports global symbols",
+      "supports": "windows"
+    }
+  }
 }
