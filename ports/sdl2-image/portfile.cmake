@@ -25,7 +25,6 @@ vcpkg_cmake_configure(
         -DSDL2IMAGE_DEPS_SHARED=OFF
         -DSDL2IMAGE_SAMPLES=OFF
         -DSDL2IMAGE_VENDORED=OFF
-        -DSDL2IMAGE_PNG_SHARED=ON
 )
 
 vcpkg_cmake_install()
