@@ -4,7 +4,7 @@ vcpkg_from_github(
     REF "release-${VERSION}"
     SHA512 1ec6e7d08bbcd28bba6c972b2e4a11a1da841abef3ffb3d29669b0f5eb0839f39044b0b334c0707274dd51192e081f25bdab97c6710d632422c4ed0274a30f18
     HEAD_REF main
-    PATCHES 
+    PATCHES
         fix-findwebp.patch
 )
 
@@ -25,7 +25,6 @@ vcpkg_cmake_configure(
         -DSDL2IMAGE_DEPS_SHARED=OFF
         -DSDL2IMAGE_SAMPLES=OFF
         -DSDL2IMAGE_VENDORED=OFF
-        -DSDL2IMAGE_PNG_SHARED=ON
 )
 
 vcpkg_cmake_install()
@@ -45,7 +44,7 @@ if(NOT VCPKG_BUILD_TYPE)
     vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig/SDL2_image.pc" "-lSDL2_image" "-lSDL2_imaged")
 endif()
 
-file(REMOVE_RECURSE 
+file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/debug/share"
     "${CURRENT_PACKAGES_DIR}/debug/include"
     "${CURRENT_PACKAGES_DIR}/SDL2_image.framework"
